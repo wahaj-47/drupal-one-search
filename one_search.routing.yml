@@ -1,5 +1,5 @@
 one_search.embed:
-  path: "/embed/one_search"
+  path: "/embed/one_search/{block_id}"
   defaults:
     _controller: '\Drupal\one_search\Controller\OneSearchController::content'
     _title: "One Search Embed"

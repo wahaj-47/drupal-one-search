@@ -7,11 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 class OneSearchController extends ControllerBase
 {
-    public function content()
+    public function content($block_id)
     {
         $block = \Drupal::entityTypeManager()
             ->getStorage('block')
-            ->create(['plugin' => 'one_search_block']);
+            ->load($block_id);
 
         $build = \Drupal::entityTypeManager()
             ->getViewBuilder('block')
