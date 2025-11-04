@@ -1,0 +1,7 @@
+one_search.embed:
+  path: "/embed/one_search"
+  defaults:
+    _controller: '\Drupal\one_search\Controller\OneSearchController::content'
+    _title: "One Search Embed"
+  requirements:
+    _access: "TRUE"

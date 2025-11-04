@@ -1,0 +1,15 @@
+<?php
+
+function one_search_theme($existing, $type, $theme, $path)
+{
+    return [
+        'one_search' => [
+            'variables' => [
+                'action' => NULL,
+                'placeholder' => NULL,
+                'filter_identifier' => NULL,
+            ],
+            'template' => 'one-search',
+        ],
+    ];
+}

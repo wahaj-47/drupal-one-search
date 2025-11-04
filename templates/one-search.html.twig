@@ -1,0 +1,16 @@
+<form 
+  id="one-search"
+  class="one-search-form"
+  action="{{ action }}"
+  method="get"
+  hx-boost="true"
+>
+  <input
+    type="text"
+    name="{{ filter_identifier }}"
+    placeholder="{{ placeholder }}"
+    class="one-search-input"
+    value="{{ app.request.query.get(filter_identifier) }}"
+  />
+  <button type="submit" class="one-search-btn">Search</button>
+</form>

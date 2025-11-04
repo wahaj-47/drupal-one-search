@@ -1,0 +1,9 @@
+main:
+  css:
+    theme:
+      css/one-search.css: {}
+  js:
+    js/one-search.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

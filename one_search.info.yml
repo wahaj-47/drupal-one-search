@@ -1,0 +1,6 @@
+name: One Search
+description: A standalone input field for controlling search filter on multiple views.
+package: Custom
+
+type: module
+core_version_requirement: ^9 || ^10
