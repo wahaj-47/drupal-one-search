@@ -11,5 +11,8 @@ function one_search_theme($existing, $type, $theme, $path)
             ],
             'template' => 'one-search',
         ],
+        'one_search_summary' => [
+            'template' => 'one-search-summary'
+        ]
     ];
 }

@@ -7,3 +7,13 @@ main:
   dependencies:
     - core/drupal
     - core/jquery
+
+summary:
+  css:
+    theme:
+      css/one-search-summary.css: {}
+  js:
+    js/one-search-summary.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

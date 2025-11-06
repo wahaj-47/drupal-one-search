@@ -1,12 +1,12 @@
 (function ($, Drupal) {
-    Drupal.behaviors.globalSearchRedirect = {
+    Drupal.behaviors.oneSearch = {
         attach(context, settings) {
             once('one-search-form', '#one-search', context).forEach((form) => {
-                // Optional enhancement: intercept Enter key to add custom logic
                 $(form).on('submit', function (e) {
                     e.preventDefault();
                     const filterIdentifier = settings.one_search.filterIdentifier;
                     const term = $(form).find(`input[name="${filterIdentifier}"]`).val() || '';
+                    settings.one_search.searchTerm = term;
 
                     const views = $('.one-search-target', context)
 

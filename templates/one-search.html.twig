@@ -1,16 +1,82 @@
-<form 
-  id="one-search"
-  class="one-search-form"
-  action="{{ action }}"
-  method="get"
-  hx-boost="true"
->
-  <input
-    type="text"
-    name="{{ filter_identifier }}"
-    placeholder="{{ placeholder }}"
-    class="one-search-input"
-    value="{{ app.request.query.get(filter_identifier) }}"
-  />
-  <button type="submit" class="one-search-btn">Search</button>
-</form>
+{{ attach_library('bootstrap_barrio/node') }}
+
+<div class="nodeSection bentoControls">
+  <div class="testSection inputSection">
+
+    <div class="bentoHeader">
+      <button class="bntTitle" type="button" data-bs-toggle="offcanvas" data-bs-target="#showcaseMenu" aria-controls="showcaseMenu">
+        <span class="bc bc0">Home</span> /
+        <span class="bc bc1">Bento search</span>
+      </button>
+    </div>
+
+    <div class="searchHero">
+
+      <div class="searchLoad" id="loadingWrap">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 433.907 106" style="enable-background:new 0 0 433.907 106;" xml:space="preserve" src="/themes/contrib/bootstrap_sass/logo.svg" alt="Home" class="img-fluid d-inline-block align-top">
+          <g>
+            <g id="LSU_-_Illustrator_1_">
+              <g>
+                <path d="M144.375,69.483V47.253h-42.561v-6.288c0-2.78,3.073-5.046,6.801-5.046h35.76V24H99.036     c-9.652,0-17.55,5.848-17.55,13.015v22.157h42.559v6.363c0,2.778-3.071,5.045-6.874,5.045H81.486V82.5h45.265     C136.476,82.5,144.375,76.65,144.375,69.483z"></path>
+                <polygon points="76.651,70.653 44.183,70.653 44.183,24 24,24 24,82.5 76.651,82.5    "></polygon>
+                <path d="M211.92,69.483V24h-20.256v41.535c0,2.852-3.071,5.118-6.873,5.118h-15.503V24.144h-20.109V82.5     h45.191C204.022,82.5,211.92,76.65,211.92,69.483z"></path>
+              </g>
+            </g>
+            <rect x="237.379" y="17.105" width="1.5" height="72.198"></rect>
+            <g>
+              <path d="M261.419,36.904h5.538v21.139h10.999v4.875h-16.537V36.904z"></path>
+              <path d="M281.192,38.698c0-1.639,1.365-2.964,2.964-2.964c1.638,0,2.964,1.325,2.964,2.964    c0,1.638-1.326,2.964-2.964,2.964C282.557,41.662,281.192,40.336,281.192,38.698z M281.699,44.08h4.954v18.838h-4.954V44.08z"></path>
+              <path d="M291.566,36.904h4.953v9.594c1.482-1.911,3.588-2.886,5.812-2.886c4.797,0,8.346,3.744,8.346,9.906    c0,6.28-3.588,9.868-8.346,9.868c-2.263,0-4.329-1.014-5.812-2.886v2.418h-4.953V36.904z M300.77,58.979    c2.887,0,4.798-2.184,4.798-5.46c0-3.276-1.911-5.499-4.798-5.499c-1.599,0-3.432,0.936-4.251,2.184v6.67    C297.338,58.082,299.171,58.979,300.77,58.979z"></path>
+              <path d="M314.419,44.08h4.953v2.574c1.326-1.677,3.666-3.003,6.006-3.003v4.836    c-0.351-0.078-0.818-0.156-1.364-0.156c-1.639,0-3.822,0.937-4.642,2.146v12.442h-4.953V44.08z"></path>
+              <path d="M339.77,60.968c-1.287,1.521-3.51,2.418-5.968,2.418c-3.003,0-6.552-2.027-6.552-6.24    c0-4.408,3.549-6.006,6.552-6.006c2.496,0,4.72,0.78,5.968,2.301v-2.613c0-1.911-1.638-3.159-4.134-3.159    c-2.028,0-3.9,0.741-5.5,2.224l-1.872-3.315c2.302-2.028,5.266-2.964,8.229-2.964c4.29,0,8.229,1.716,8.229,7.137v12.169h-4.953    V60.968z M339.77,56.054c-0.819-1.092-2.379-1.638-3.979-1.638c-1.95,0-3.549,1.014-3.549,2.847c0,1.755,1.599,2.77,3.549,2.77    c1.6,0,3.159-0.547,3.979-1.639V56.054z"></path>
+              <path d="M349.636,44.08h4.953v2.574c1.326-1.677,3.666-3.003,6.006-3.003v4.836    c-0.351-0.078-0.818-0.156-1.364-0.156c-1.639,0-3.822,0.937-4.642,2.146v12.442h-4.953V44.08z"></path>
+              <path d="M363.168,38.698c0-1.639,1.365-2.964,2.964-2.964c1.639,0,2.964,1.325,2.964,2.964    c0,1.638-1.325,2.964-2.964,2.964C364.534,41.662,363.168,40.336,363.168,38.698z M363.675,44.08h4.953v18.838h-4.953V44.08z"></path>
+              <path d="M382.083,43.612c5.616,0,9.438,4.212,9.438,10.374v1.093h-14c0.312,2.379,2.223,4.368,5.42,4.368    c1.755,0,3.822-0.702,5.031-1.872l2.184,3.197c-1.872,1.717-4.836,2.613-7.761,2.613c-5.733,0-10.062-3.861-10.062-9.907    C372.333,48.019,376.351,43.612,382.083,43.612z M377.443,51.724h9.282c-0.117-1.794-1.365-4.173-4.642-4.173    C379.002,47.552,377.676,49.852,377.443,51.724z"></path>
+              <path d="M395.615,56.989c1.365,1.287,4.174,2.574,6.514,2.574c2.145,0,3.159-0.74,3.159-1.911    c0-1.325-1.639-1.794-3.783-2.223c-3.237-0.624-7.41-1.405-7.41-5.89c0-3.158,2.769-5.928,7.722-5.928    c3.198,0,5.733,1.092,7.605,2.574l-1.989,3.393c-1.131-1.209-3.275-2.184-5.577-2.184c-1.794,0-2.964,0.663-2.964,1.755    c0,1.17,1.482,1.599,3.588,2.028c3.237,0.624,7.566,1.481,7.566,6.163c0,3.432-2.925,6.045-8.151,6.045    c-3.276,0-6.435-1.092-8.424-2.925L395.615,56.989z"></path>
+            </g>
+          </g>
+        </svg>
+        <div class="loadingAni"></div>
+      </div>
+
+      <div class="searchMain">
+        <div class="heroText">
+          <h1>Test out our new Bento Search</h1>
+        </div>
+        <form id="one-search" class="one-search-form masterBento" action="{{ action }}" method="get" hx-boost="true">
+          <input type="text" name="{{ filter_identifier }}" placeholder="{{ placeholder }}" class="one-search-input" value="{{ app.request.query.get(filter_identifier) }}" />
+          <button type="submit" class="one-search-btn">Search</button>
+        </form>
+      </div>
+      <div class="searchOpt">
+        <a class="searchAux auxTime" href="/hours" title="Hours">
+          <span class="time" id="live-time">test</span>
+          <span class="open"><span class="libBuilding libMain">Main Library</span></span>
+          <span class="open"><span class="libBuilding libHill">Hill Memorial Library</span></span>
+        </a>
+        <div class="searchAux auxDate">
+          <span class="time" id="live-day">XXXDAY</span>
+          <span class="open" id="live-date">MTH XX</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="spacerArea noticeArea"></div>
+    <div class="auxArea noticeArea"></div>
+    <div class="auxArea extraArea"></div>
+    {# <div class="auxArea testArea linksMenu bannerCol load-hidden">
+
+      test area
+      <div class="menuContent">
+				<a class="menuHeader" href="https://lsu.libcal.com/calendar/eventsandprogramming?cid=8030&t=m&d=0000-00-00&cal=8030&inc=0" target="_blank">
+					Test
+				</a>
+				<div class="menuItem eventsItem">
+					<div id="api_upc_cid8030_iid1486"></div>
+					<script src="https://lsu.libcal.com/api_events.php?m=upc&cid=8030&audience=&c=&d=&l=6&target=_blank&simple=ul_date&context=object&format=js"></script>
+				</div>
+			</div>
+    </div> #}
+  </div>
+
+</div>
