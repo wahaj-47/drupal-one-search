@@ -89,6 +89,7 @@ class OneSearchBlock extends BlockBase
                 'drupalSettings' => [
                     'one_search' => [
                         'filterIdentifier' => $this->configuration['filter_identifier'],
+                        'action' => $url,
                     ],
                 ],
             ],

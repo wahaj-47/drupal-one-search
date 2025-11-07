@@ -3,7 +3,15 @@
         attach(context, settings) {
             once('one-search-form', '#one-search', context).forEach((form) => {
                 $(form).on('submit', function (e) {
-                    e.preventDefault();
+                    const { protocol, host, pathname } = window.location;
+
+                    const action = settings.one_search.action;
+                    const actionUrl = new URL(action, `${protocol}//${host}`);
+
+                    if (pathname === actionUrl.pathname) {
+                        e.preventDefault();
+                    }
+
                     const filterIdentifier = settings.one_search.filterIdentifier;
                     const term = $(form).find(`input[name="${filterIdentifier}"]`).val() || '';
                     settings.one_search.searchTerm = term;
