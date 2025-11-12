@@ -9,10 +9,16 @@ function one_search_theme($existing, $type, $theme, $path)
                 'placeholder' => NULL,
                 'filter_identifier' => NULL,
             ],
+            'render element' => 'elements',
             'template' => 'one-search',
         ],
         'one_search_summary' => [
+            'render element' => 'elements',
             'template' => 'one-search-summary'
+        ],
+        'one_search_filters' => [
+            'render element' => 'elements',
+            'template' => 'one-search-filters'
         ]
     ];
 }
