@@ -17,3 +17,15 @@ summary:
   dependencies:
     - core/drupal
     - core/jquery
+
+filters:
+  css:
+    theme:
+      css/one-search-filters.css: {}
+  js:
+    js/one-search-filters.js: {}
+  dependencies:
+    - core/once
+    - core/jquery
+    - core/sortable
+    - core/drupal
