@@ -1,6 +1,6 @@
 (function ($, Drupal) {
     Drupal.behaviors.oneSearch = {
-        attach(context, settings) {
+        attach: function (context, settings) {
             once('one-search-form', '#one-search', context).forEach((form) => {
                 $(form).on('submit', function (e) {
                     const { protocol, host, pathname } = window.location;
