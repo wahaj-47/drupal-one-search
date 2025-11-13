@@ -17,7 +17,6 @@
 
                 const container = view.closest('.views-element-container');
                 const viewId = container.attr('id');
-                console.log(viewId)
 
                 const filter = $("<div></div>", {
                     class: "form-check form-switch",
@@ -31,7 +30,7 @@
                     checked: true,
                     id: `filter-${viewId}`,
                     'data-target': `#${viewId}`,
-                    class: "form-check-input"
+                    class: "form-check-input",
                 })
 
                 const label = $("<label></label>", {

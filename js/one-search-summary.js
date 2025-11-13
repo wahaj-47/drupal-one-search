@@ -13,9 +13,9 @@
                     const params = new URLSearchParams(queryString);
                     const searchTerm = params.get(filterIdentifier) || settings.one_search.searchTerm;
 
-                    
+
                     if (searchTerm) {
-                        
+
                         $('#one-search-term').text(searchTerm);
                         //use searchTerm for external catalog search link
                         const base = 'https://lsu.ent.sirsi.net/client/en_US/lsu/search/results';
@@ -31,11 +31,12 @@
                         $('a.catalogExternal').attr('href', newHref);
                         $('a.guideExternal').attr('href', guideHref);
                         $('a.srExternal').attr('href', srHref);
-                        //wahaj, please write an equivalent for an external discovery search link
+
+                        const discoveryHref = `https://libezp.lib.lsu.edu/login?url=https://search.ebscohost.com/login.aspx?direct=true&site=eds-live&scope=site&type=0&mode=and&lang=en&bquery=${searchTerm}`
+                        $('a.discoveryExternal').attr("href", discoveryHref)
 
                         //change h4 to show summary
-                        $('h4.bentoSubtitle').html('Your search for <span class="searchInput">'+ searchTerm +'</span> came up with <span class="searchInput">' + totalResults + '</span> results');
-                        //$('a.discoveryExternal') will need the new href
+                        $('h4.bentoSubtitle').html('Your search for <span class="searchInput">' + searchTerm + '</span> came up with <span class="searchInput">' + totalResults + '</span> results');
                     }
 
                 }
