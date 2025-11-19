@@ -5,8 +5,9 @@ main:
   js:
     js/one-search.js: {}
   dependencies:
-    - core/drupal
+    - core/once
     - core/jquery
+    - core/drupal
 
 summary:
   css:
@@ -15,8 +16,10 @@ summary:
   js:
     js/one-search-summary.js: {}
   dependencies:
-    - core/drupal
+    - core/once
     - core/jquery
+    - core/drupal
+    - core/drupal.ajax
 
 filters:
   css:
@@ -29,3 +32,4 @@ filters:
     - core/jquery
     - core/sortable
     - core/drupal
+    - core/drupal.ajax
