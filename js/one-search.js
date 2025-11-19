@@ -26,8 +26,6 @@
 
             once('one-search-popstate', 'body', context).forEach(() => {
                 window.addEventListener("popstate", function () {
-                    console.log("POP STATE");
-
                     const filterIdentifier = settings.one_search.filterIdentifier;
                     const term = new URL(location.href).searchParams.get(filterIdentifier) || '';
 
