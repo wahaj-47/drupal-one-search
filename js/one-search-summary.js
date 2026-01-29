@@ -13,7 +13,6 @@
                     const params = new URLSearchParams(queryString);
                     const searchTerm = params.get(filterIdentifier) || settings.one_search.searchTerm;
 
-
                     if (searchTerm) {
 
                         $('#one-search-term').text(searchTerm);
@@ -39,6 +38,8 @@
                         $('h4.bentoSubtitle').html('Your search for <span class="searchInput">' + searchTerm + '</span> came up with <span class="searchInput">' + totalResults + '</span> results');
                     }
 
+                    // Trigger event to allow other modules to listen for it
+                    $(document).trigger('one-search-summary-ready', { totalResults, searchTerm })
                 }
 
                 // Called once on page load
