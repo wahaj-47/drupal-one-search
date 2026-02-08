@@ -1,4 +1,40 @@
-<a class="outerSearch block-views mb-3 discoveryExternal" href="/discoveryplaceholder" target="_blank">
+<div id="one-search-filters" class="block-views views-element-container">
+  <div class="content">
+    <div>
+      <div class="bentoColumn filterColumn">
+        <div class="view-header">
+          <div class="bentoTop">
+            <div class="bentoTitle">
+              <h2>Filters</h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="view-content row">
+          <div id="one-search-filters-options" class="views-row">
+            {# The options will be generated via JS #}
+          </div>
+          <div class="filter-order">
+            <div class="change-order filterOrder">
+              <div class="change-icon">
+                <i class="fas fa-arrows-alt-v"></i>
+              </div>
+              <span class="change-order-text orderText">Drag categories above to change order</span>
+            </div>
+            <div class="reset-order filterOrder">
+              <button id="one-search-reset-filter-button" class="btn btn-secondary">
+                <i class="fas fa-sync"></i>
+              </button>
+              <span class="reset-order-text orderText">Reset order</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a class="outerSearch block-views mt-3 mb-3 discoveryExternal" href="/discoveryplaceholder" target="_blank">
   <div class="extsearchText">
     <span class="extVerb">Search in</span>
     <span class="extType">Discovery</span>
@@ -12,28 +48,3 @@
   </div>
   <i class="fas fa-external-link"></i>
 </a>
- 
-<div id="one-search-filters" class="block-views views-element-container">
-  <div class="content">
-    <div>
-      <div class="bentoColumn filterColumn">
-        <div class="view-header">
-          <div class="bentoTop">
-            <div class="bentoTitle">
-              <h2>Filters</h2>
-              <button id="one-search-reset-filter-button" class="btn btn-secondary">
-                <i class="fas fa-sync"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="view-content row">
-          <div id="one-search-filters-options" class="views-row">
-            {# The options will be generated via JS #}
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>

@@ -1,5 +1,7 @@
 <?php
 
+use Symfony\Component\HttpFoundation\RequestStack;
+
 function one_search_theme($existing, $type, $theme, $path)
 {
     return [
@@ -8,6 +10,7 @@ function one_search_theme($existing, $type, $theme, $path)
                 'action' => NULL,
                 'placeholder' => NULL,
                 'filter_identifier' => NULL,
+                'search_term' => NULL,
             ],
             'render element' => 'elements',
             'template' => 'one-search',

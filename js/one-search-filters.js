@@ -5,6 +5,59 @@
         });
     }
 
+    function disableEmptyFilters() {
+        $('#one-search-filters-options .form-check').each(function () {
+            const newfilterCount = $(this).find('.filter-total').text();
+            if (newfilterCount == '0') {
+                $(this).addClass('emptyFilter');
+            } else {
+                $(this).removeClass('emptyFilter');
+            }
+        });
+    }
+
+    function appendFilterCounts() {
+        $('.one-search-target').each(function () {
+            const view = $(this);
+            const viewId = view.closest('.views-element-container').attr('id');
+            const newCount = view.find('.view-summary').data('total');
+
+            $(`#filter-${viewId}`)
+                .siblings('.form-check-label')
+                .find('.filter-total')
+                .text(`${newCount || 0}`);
+
+        });
+    }
+
+    function highlightBox() {
+        $('.highlightToggle').off('click').on('click', function () {
+            const $toggle = $(this);
+            const targetSelector = $toggle.data('target');
+            const $target = $(targetSelector);
+
+            if ($target.length === 0) return;
+
+            const isActive = $target.hasClass('boxHighlight');
+
+            $('.highlightToggle').each(function () {
+                const sel = $(this).data('target');
+                $(sel).removeClass('boxHighlight');
+            });
+
+            $('.highlightToggle').removeClass('active');
+
+            if (isActive) return;
+
+            $target.addClass('boxHighlight');
+            $toggle.addClass('active');
+
+            $('html, body').animate({
+                scrollTop: $target.offset().top - 70
+            }, 400);
+        });
+    }
+
     Drupal.behaviors.oneSearchSortableFilters = {
         attach: function (context, settings) {
             const filters = $('#one-search-filters-options');
@@ -31,12 +84,14 @@
                     id: `filter-${viewId}`,
                     'data-target': `#${viewId}`,
                     class: "form-check-input",
+                    'aria-label': title
                 })
 
-                const label = $("<label></label>", {
+                const label = $("<div></div>", {
                     for: `filter-${viewId}`,
                     text: title,
-                    class: "form-check-label"
+                    class: "form-check-label highlightToggle",
+                    'data-target': `#${viewId}`,
                 });
 
                 const total = $("<span></span>", {
@@ -93,30 +148,6 @@
                 }
             });
 
-            $(document).on('ajaxComplete', function (e) {
-                $('#one-search-filters-options .form-check').each(function () {
-                    const newfilterCount = $(this).find('.filter-total').text();
-                    if (newfilterCount == '0') {
-                        $(this).addClass('emptyFilter');
-                    } else {
-                        $(this).removeClass('emptyFilter');
-                    }
-                });
-
-
-                $('.one-search-target').each(function () {
-                    const view = $(this);
-                    const viewId = view.closest('.views-element-container').attr('id');
-                    const newCount = view.find('.view-summary').data('total');
-
-                    $(`#filter-${viewId}`)
-                        .siblings('label')
-                        .find('.filter-total')
-                        .text(`${newCount || 0}`);
-
-                });
-            });
-
             once('one-search-reset-filters', '#one-search-reset-filter-button', context).forEach(function (el) {
                 $(el).on("click", function () {
                     const order = []
@@ -132,6 +163,20 @@
                     sortable.save()
                 })
             })
+
+            // Runs once on page load
+            once('one-search-init', 'body', context).forEach(() => {
+                appendFilterCounts();
+                disableEmptyFilters();
+                highlightBox()
+            })
+
+            // Runs on all AJAX requests
+            $(document).on('ajaxComplete', function (e) {
+                disableEmptyFilters();
+                appendFilterCounts();
+                highlightBox();
+            });
         }
     }
 })(jQuery, Drupal);

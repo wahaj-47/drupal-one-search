@@ -1,4 +1,13 @@
+{# action = /bento #}
+{# filter_identifier = search_api_fulltext_bento #}
+{# placeholder = Search everything... #}
+{# /bento?search_api_fulltext_bento=Whatever #}
+
 <form id="one-search" class="one-search-form masterBento" action="{{ action }}" method="get" hx-boost="true">
-  <input id="edit-search-api-fulltext-bento" type="text" name="{{ filter_identifier }}" placeholder="{{ placeholder }}" class="one-search-input form-control" value="{{ app.request.query.get(filter_identifier) }}" />
-  <button id="bentoSubmit" type="submit" class="one-search-btn button js-form-submit form-submit btn"><i class="fas fa-search"></i></button>
+  <input id="edit-search-api-fulltext-bento" type="text" name="{{ filter_identifier }}" placeholder="{{ placeholder }}" class="one-search-input form-control" value="{{ search_term }}" />
+  <button id="bentoSubmit" type="submit" class="one-search-btn button js-form-submit form-submit btn">
+    <i class="fas fa-search"></i><div class="spinner-border text-light" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </button>
 </form>

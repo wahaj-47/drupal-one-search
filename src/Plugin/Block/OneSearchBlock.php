@@ -82,6 +82,9 @@ class OneSearchBlock extends BlockBase
             \Drupal::logger('one_search')->warning('Invalid target route/path: @target', ['@target' => $target]);
         }
 
+        $request = \Drupal::service('request_stack')->getCurrentRequest();
+        $search_term = $request->query->get($this->configuration['filter_identifier'], '');
+
         return [
             '#theme' => 'one_search',
             '#attached' => [
@@ -95,7 +98,11 @@ class OneSearchBlock extends BlockBase
             ],
             '#action' => $url,
             '#placeholder' => $this->configuration['placeholder'],
-            '#filter_identifier' => $this->configuration['filter_identifier']
+            '#filter_identifier' => $this->configuration['filter_identifier'],
+            '#search_term' => $search_term,
+            '#cache' => [
+                'contexts' => ['url.query_args'], // <--- Add this line
+            ],
         ];
     }
 }
